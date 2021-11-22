@@ -1,0 +1,48 @@
+---
+title: "Airline Safety"
+author: Adeesh Naik
+date: November 21st, 2021
+output: html_document
+---
+
+
+```{r setup, echo=FALSE, include=FALSE}
+
+library(tidyverse)
+library(knitr)
+library(dplyr)
+
+```
+
+
+``` {r ReadingData, echo = FALSE}
+#Read the data into data frame using function "read_csv" from package "tidyverse"
+
+airline_safety <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/airline-safety/airline-safety.csv")
+```
+
+
+```{r Histogram, echo=FALSE}
+
+fatalities_85_99 <- airline_safety$fatalities_85_99
+hist(fatalities_85_99)
+
+
+```
+
+
+```{r ScatterPlot, echo=FALSE}
+# Creating a new appended vector with fatalities between 2000 - 2014
+fatalities <- append(fatalities_85_99, airline_safety$fatalities_00_14)
+# Vector to modify categorize the year range
+year <- rep(c("89-99","00-14"),each=nrow(airline_safety))
+#Create a new data frame
+df_scatterPlot <- data.frame(airline_safety$avail_seat_km_per_week,fatalities,year)
+
+ggplot(df_scatterPlot, aes(x=airline_safety.avail_seat_km_per_week, y=fatalities)) +
+  geom_point(aes(col=year))
+
+
+
+```
+
