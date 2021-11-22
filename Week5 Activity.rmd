@@ -21,6 +21,7 @@ library(dplyr)
 airline_safety <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/airline-safety/airline-safety.csv")
 ```
 
+A histogram of the fatalities to understand the distribution
 
 ```{r Histogram, echo=FALSE}
 
@@ -30,6 +31,7 @@ hist(fatalities_85_99)
 
 ```
 
+A scatter plot between kilometers flow for all the seats v/s the fatalities, colored by the year range when the data was recorded
 
 ```{r ScatterPlot, echo=FALSE}
 # Creating a new appended vector with fatalities between 2000 - 2014
